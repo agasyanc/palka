@@ -1,7 +1,11 @@
 import '../styles/button.css'
 import { Watcher } from './watcher/watcher';
 
-export class Button extends Watcher {
+interface ButtonEventMap {
+  'click': null;
+}
+
+export class Button extends Watcher<ButtonEventMap> {
   el:HTMLElement;
   constructor(){
     super();

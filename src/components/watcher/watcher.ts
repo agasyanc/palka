@@ -1,16 +1,20 @@
-import { Watch } from "./watch";
+export class Watcher<EventMap>{
+  watches: Watch<EventMap>[] = [];
 
-export class Watcher {
-  watches: Watch[] = [];
-
-  watch(name:string, callback:Function){
+  watch<K extends keyof EventMap>(name:K, callback:(value: EventMap[K])=>void){
     this.watches.push(new Watch(name, callback))
   }
-  fire(name:string, value:any|null = null){
-    this.watches.forEach((watch:Watch) => {
+  fire<K extends keyof EventMap>(name:K, value:EventMap[K]|null = null){
+    this.watches.forEach((watch:Watch<EventMap>) => {
       if(watch.name === name){
         watch.callback(value);
       }
     })
+  }
+}
+
+class Watch<EventMap> {
+  constructor(public name:keyof EventMap, public callback:Function) {
+    
   }
 }

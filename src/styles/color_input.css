@@ -1,0 +1,8 @@
+.color-input {
+  
+}
+.color-input__preview{
+  width: 1em;
+  height: 1em;
+  background-color: black;
+}
